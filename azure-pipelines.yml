@@ -3,8 +3,6 @@ trigger:
 
 pool:
   name: Self-hosted
-  demands:
-  - agent.name -equals agent1
 
 steps:
 
