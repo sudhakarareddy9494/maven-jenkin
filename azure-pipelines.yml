@@ -6,11 +6,6 @@ pool:
 
 steps:
 
-- script: |
-    java -version
-  env:
-    JAVA_HOME: $(JAVA_HOME)
-    PATH: $(JAVA_HOME)/bin:$(PATH)
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
