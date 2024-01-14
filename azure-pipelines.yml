@@ -6,40 +6,6 @@ pool:
 
 steps:
 
-- bash: |
-    ubuntu_release=`lsb_release -rs`
-    sudo apt-get install apt-transport-https
-    sudo apt-get update
-    sudo apt install default-jdk -y
-    sudo sed -i '3iexport JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64' /etc/profile
-    sudo sed -i '4iexport PATH=$JAVA_HOME/bin:$PATH' /etc/profile
-    source /etc/profile
-    
-  displayName: Install JDK 11
-
-- bash: |
-    sudo add-apt-repository ppa:git-core/ppa -y
-    sudo apt update
-    sudo apt install git -y
-    
-  displayName: Install Git Latest
-
-- bash: |
-    wget https://dlcdn.apache.org/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz
-    sudo tar xf apache-maven-*.tar.gz -C /opt
-    sudo ln -s /opt/apache-maven-3.9.4 /opt/maven
-    sudo touch /etc/profile.d/maven.sh
-    sudo sed -i '1iexport M2_HOME=/opt/maven' /etc/profile.d/maven.sh
-    sudo sed -i '2iexport MAVEN_HOME=/opt/maven' /etc/profile.d/maven.sh
-    sudo sed -i '3iexport PATH=${M2_HOME}/bin:${PATH}' /etc/profile.d/maven.sh
-    sudo chmod +x /etc/profile.d/maven.sh
-    source /etc/profile.d/maven.sh
-    sudo ln -s /opt/maven/bin/mvn /usr/bin
-    sudo ln -s /opt/maven/bin/mvn /usr/sbin
-    
-  displayName: Install Maven 3.9.4
-
-
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
