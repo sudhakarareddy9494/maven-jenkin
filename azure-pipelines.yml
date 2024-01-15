@@ -5,6 +5,8 @@ pool:
   name: Self-hosted
   demands: Agent.Name -equals ubuntu1
 
+steps:
+
 - task: CmdLine@2
   inputs:
     script: |
