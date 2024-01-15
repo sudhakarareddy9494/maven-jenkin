@@ -3,15 +3,12 @@ trigger:
 
 pool:
   name: Self-hosted
+  demands: Agent.Name -equals ubuntu1
 
-steps:
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo  '$(System.DefaultWorkingDirectory)'
+      dir
+      dir subfoldername
 
-- task: Bash@3
-    displayName: "Workaround: Set environment variables manually"
-    inputs:
-      targetType: 'inline'
-      script: |
-        cd ~
-        echo "##vso[task.setvariable variable=HOME]$(pwd)"
-        echo "##vso[task.setvariable variable=USER]$(whoami)"
-        echo "##vso[task.setvariable variable=JAVA_HOME_17_X64]/usr/lib/jvm/java-17-openjdk-amd64"
