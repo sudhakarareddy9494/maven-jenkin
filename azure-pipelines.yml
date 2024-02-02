@@ -22,7 +22,7 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
- - task: UniversalPackages@0
+- task: UniversalPackages@0
   displayName: Publish a Universal Package
   inputs:
     command: publish
